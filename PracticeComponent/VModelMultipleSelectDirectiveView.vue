@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div v-for="(language, index) in languages" :key="index">
-      <input
-        type="radio"
-        v-model="checked"
+    <select v-model="selected" multiple>
+      <option disabled value="">選択してください</option>
+      <option
+        v-for="(language, index) in languages"
         :value="language.value"
-        :id="index"
-      />
-      <label :for="index">
+        :key="index"
+      >
         {{ language.label }}
-      </label>
-    </div>
-    {{ checked }}
+      </option>
+    </select>
+    <br />
+    {{ selected }}
   </div>
 </template>
 <script lang="ts">
@@ -33,10 +33,10 @@ export default defineComponent({
         label: "HTML",
       },
     ];
-    const checked = ref("");
+    const selected = ref([]);
 
     return {
-      checked,
+      selected,
       languages,
     };
   },
